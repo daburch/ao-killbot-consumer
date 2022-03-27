@@ -1,0 +1,24 @@
+input:
+  kafka:
+    addresses:
+      - broker:29092
+    topics:
+      - ao_events
+    target_version: 1.0.0
+    consumer_group: discord_killbot_consumer_group
+    client_id: discord_killbot_input
+    checkpoint_limit: 1
+
+# pipeline:
+#   processors:
+#     - label: "log_message"
+#       log:
+#         level: INFO
+#         message: "Processing message: ${! meta("kafka_offset") }"
+
+output:
+  http_client:
+    url: http://discord_killbot:8080/post-kill
+    verb: POST
+    headers:
+      Content-Type: application/json
