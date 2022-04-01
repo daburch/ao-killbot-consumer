@@ -18,7 +18,7 @@ input:
 
 output:
   http_client:
-    url: http://discord_killbot:8080/post-kill
+    url: ${KILLBOT_URL}
     verb: POST
     headers:
       Content-Type: application/json

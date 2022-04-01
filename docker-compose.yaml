@@ -1,0 +1,19 @@
+---
+version: '3'
+services:
+  ao_killbot_consumer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ao_killbot_consumer
+    container_name: ao_killbot_consumer
+    restart: unless-stopped
+    depends_on:
+      - discord_killbot
+      - broker
+    environment:
+    - KILLBOT_URL=${KILLBOT_URL}
+
+networks:
+  default:
+    name: ao_tools_default
